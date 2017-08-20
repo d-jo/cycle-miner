@@ -40,6 +40,7 @@ class Job:
         self.solution = solution
         self.solver = solver
         self.solution_fingerprint = keccak256(id, solver, solution)
+        return self.solution_fingerprint
 
 
 
