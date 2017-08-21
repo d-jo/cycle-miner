@@ -2,6 +2,10 @@
 
 The cycle miner is designed to fetch work from the cycle contract and compute the result. 
 
-Jobs are given in numpy matrix string format. https://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html Valid operations for the time being are here:
+Language spec:
 
-`conv2d[int[4] strides][padding]` - preforms a convolution on matrix A with matrix B using the steps provided.
+The job language for work consists of named variables and a list of instructions detailing the training operations. 
+
+The numpy matrix string format is described here: https://docs.scipy.org/doc/numpy/reference/generated/numpy.matrix.html
+
+`[name(numpy matrix)...][instructionset(TBD)]`
