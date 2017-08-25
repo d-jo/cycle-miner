@@ -13,6 +13,8 @@ def readFile(name):
 def conv2d(mat1, mat2, padding='valid'):
     return signal.convolve2d(mat1, mat2, padding)
 
+# so funny story, this isnt actually correct...
+# keccak256 and sha256 are not the same
 def keccak256(*args):
     al = hashlib.sha256()
     for arg in args:
