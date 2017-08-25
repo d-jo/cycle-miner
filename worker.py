@@ -1,7 +1,6 @@
 #!/usr/bin/python2
 
 from web3 import Web3, HTTPProvider
-from solc import compile_source
 import json
 
 def readABI(file):
