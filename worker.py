@@ -1,58 +1,16 @@
-import numpy as np
-import hashlib
-from scipy import signal
+#!/usr/bin/python2
 
-WORKER = "0xd3adb33f"
+from web3 import Web3, HTTPProvider
+from solc import compile_source
+import json
 
-def readFile(name):
-    with open(name) as f:
-        content = np.matrix(f.read())
-        f.close()
-        return content
+def readABI(file):
+    with open(file, 'r') as f:
+        return json.load(f)
 
-def conv2d(mat1, mat2, padding='valid'):
-    return signal.convolve2d(mat1, mat2, padding)
+web3 = Web3(HTTPProvider('http://localhost:8545'))
 
-# so funny story, this isnt actually correct...
-# keccak256 and sha256 are not the same
-def keccak256(*args):
-    al = hashlib.sha256()
-    for arg in args:
-        al.update(arg.encode('utf-8'))
-    return al.hexdigest()
+abidef = readABI('testing-contract/out/TestingContract.abi')
+mathContract = web3.eth.contract(abi=abidef, address='0xb4c79daB8f259C7Aee6E5b2Aa729821864227e84')
 
-class Job:
-
-    id = 0
-    data1 = 0
-    data2 = 0
-    op = 0
-    solution = 0
-    solver = 0
-    solution_fingerprint = 0
-
-    def __init__(self, data1, data2, op):
-        self.data1 = data1
-        self.data2 = data2
-        self.dop = op
-        id = keccak256(data1, data2, op)
-
-    
-    def solve(self, solver, solution):
-        self.solution = solution
-        self.solver = solver
-        self.solution_fingerprint = keccak256(id, solver, solution)
-        return self.solution_fingerprint
-
-
-
-
-mat1 = readFile('data1')
-mat2 = readFile('data2')
-
-print(keccak256(mat1, mat2, "conv"))
-print(mat1)
-print(mat2)
-
-print(conv2d(mat1, mat2))
-
+print (mathContract.call().Square(5))
