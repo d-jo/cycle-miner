@@ -1,1 +1,1 @@
-[{"constant":false,"inputs":[{"name":"work","type":"uint256"}],"name":"Square","outputs":[{"name":"","type":"uint256"}],"payable":false,"type":"function"}]
+[{"constant":false,"inputs":[{"name":"workdata","type":"string"}],"name":"CreateWork","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"GetWork","outputs":[{"name":"","type":"string"}],"payable":false,"type":"function"},{"constant":false,"inputs":[],"name":"SubmitSolution","outputs":[{"name":"","type":"bool"}],"payable":false,"type":"function"}]
