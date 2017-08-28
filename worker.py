@@ -14,6 +14,8 @@ def loadContract(name, address):
 
 web3 = Web3(HTTPProvider('http://localhost:8545'))
 
-workerContract = loadContract('TestingContract.abi', '0xb4c79daB8f259C7Aee6E5b2Aa729821864227e84')
+workerContract = loadContract('TestingContract.abi', '0xee35211C4D9126D520bBfeaf3cFee5FE7B86F221')
 
+print (workerContract.call().GetWork())
+print (workerContract.call().CreateWork("this is a test asdf"))
 print (workerContract.call().GetWork())
