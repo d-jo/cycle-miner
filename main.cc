@@ -24,8 +24,8 @@ limitations under the License.
 // models will be loaded and managed over time using the
 // AvailabilityPreservingPolicy at:
 //     tensorflow_serving/core/availability_preserving_policy.h.
-// by AspiredVersionsManager at:
-//     tensorflow_serving/core/aspired_versions_manager.h
+// by CachingManager at:
+//     tensorflow_serving/core/caching_manager.h
 //
 // ModelServer has inter-request batching support built-in, by using the
 // BatchingSession at:
@@ -81,7 +81,9 @@ namespace grpc {
 class ServerCompletionQueue;
 }  // namespace grpc
 
-using tensorflow::serving::AspiredVersionsManager;
+
+// Change to CachingManger
+using tensorflow::serving::CachingManager;
 using tensorflow::serving::AspiredVersionPolicy;
 using tensorflow::serving::AvailabilityPreservingPolicy;
 using tensorflow::serving::BatchingParameters;
@@ -136,7 +138,8 @@ tensorflow::Status ParseProtoTextFile(const string& file,
 tensorflow::Status LoadCustomModelConfig(
     const ::google::protobuf::Any& any,
     EventBus<ServableState>* servable_event_bus,
-    UniquePtrWithDeps<AspiredVersionsManager>* manager) {
+    // Change to caching manager
+    UniquePtrWithDeps<CachingManager>* manager) {
   CHECK(false)  // Crash ok
       << "ModelServer does not yet support custom model config.";
 }
